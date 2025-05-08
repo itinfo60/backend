@@ -16,7 +16,10 @@ const server = http.createServer(app);
 // Security middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CLIENT_URL || "http://localhost:3000",
+  origin: [
+    "http://localhost:3000",
+    "https://spiffy-cupcake-63b17c.netlify.app"
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
@@ -34,7 +37,10 @@ app.use(express.json());
 // Socket.IO setup with production settings
 const io = socketIo(server, {
   cors: {
-    origin: process.env.CLIENT_URL || "http://localhost:3000",
+    origin: [
+      "http://localhost:3000",
+      "https://spiffy-cupcake-63b17c.netlify.app"
+    ],
     methods: ["GET", "POST"],
     credentials: true
   },
